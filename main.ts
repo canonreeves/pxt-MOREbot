@@ -43,6 +43,44 @@ namespace MOREbot {
         pins.digitalWritePin(DigitalPin.P16, 1)
     }
 
+
+    //% block="Turn left at $speed \\% speed"
+    //% speed.shadow="speedPicker"
+    //% speed.min=0 speed.max= 100 x.defl=50
+    export function left(speed: number) {
+        speed = Math.abs(speed);
+        speed *= 10;
+
+        pins.digitalWritePin(DigitalPin.P14, 1)
+
+        pins.analogWritePin(AnalogPin.P1, speed)
+        pins.digitalWritePin(DigitalPin.P13, 0)
+        pins.digitalWritePin(DigitalPin.P12, 1)
+        pins.analogWritePin(AnalogPin.P2, speed)
+        pins.digitalWritePin(DigitalPin.P15, 1)
+        pins.digitalWritePin(DigitalPin.P16, 0)
+    }
+
+
+    //% block="Turn right at $speed \\% speed"
+    //% speed.shadow="speedPicker"
+    //% speed.min=0 speed.max= 100 x.defl=50
+    export function right(speed: number) {
+        speed = Math.abs(speed);
+        speed *= 10;
+
+        pins.digitalWritePin(DigitalPin.P14, 1)
+
+        pins.analogWritePin(AnalogPin.P1, speed)
+        pins.digitalWritePin(DigitalPin.P13, 1)
+        pins.digitalWritePin(DigitalPin.P12, 0)
+        pins.analogWritePin(AnalogPin.P2, speed)
+        pins.digitalWritePin(DigitalPin.P15, 0)
+        pins.digitalWritePin(DigitalPin.P16, 1)
+    }
+
+
+
     //%block 
     export function stop() {
         pins.digitalWritePin(DigitalPin.P13, 0)
@@ -53,4 +91,3 @@ namespace MOREbot {
 
 
 }
-
