@@ -9,12 +9,14 @@ namespace MOREbot {
      */
 
 
-    //% block="Go forward at $speed speed\\%"
+    //% block="Go forward at $speed \\% speed"
     //% speed.shadow="speedPicker"
     //% speed.min=0 speed.max= 100 x.defl=50
     export function forward(speed: number) {
         speed = Math.abs(speed);
         speed *= 10;
+
+        pins.digitalWritePin(DigitalPin.P14, 1)
 
         pins.analogWritePin(AnalogPin.P1, speed)
         pins.digitalWritePin(DigitalPin.P13, 1)
@@ -24,12 +26,14 @@ namespace MOREbot {
         pins.digitalWritePin(DigitalPin.P16, 0)
     }
 
-    //% block="Go backward at $speed speed\\%"
+    //% block="Go backward at $speed \\% speed"
     //% speed.shadow="speedPicker"
     //% speed.min=0 speed.max= 100 x.defl=50
     export function Backward(speed: number) {
         speed = Math.abs(speed);
         speed *= 10;
+
+        pins.digitalWritePin(DigitalPin.P14, 1)
 
         pins.analogWritePin(AnalogPin.P1, speed)
         pins.digitalWritePin(DigitalPin.P13, 0)
