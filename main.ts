@@ -5,8 +5,10 @@
 
 namespace MOREbot {
     /**
-     * Controls the MOREbot Base Robot
+     * Controls for the MOREbot Base Robot
      */
+    
+    
     //% block="Go forward at $speed \\%"
     //% speed.shadow="speedPicker"
     //% block
@@ -21,5 +23,7 @@ namespace MOREbot {
         pins.digitalWritePin(DigitalPin.P15, 1)
         pins.digitalWritePin(DigitalPin.P16, 0)
     }
+
+
 }
 
