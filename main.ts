@@ -39,6 +39,14 @@ namespace MOREbot {
         pins.digitalWritePin(DigitalPin.P16, 1)
     }
 
+    //%block 
+    export function stop() {
+        pins.digitalWritePin(DigitalPin.P13, 0)
+        pins.digitalWritePin(DigitalPin.P12, 0)
+        pins.digitalWritePin(DigitalPin.P15, 0)
+        pins.digitalWritePin(DigitalPin.P16, 0)
+    }
+
 
 }
 
