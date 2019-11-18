@@ -10,12 +10,14 @@ namespace MOREbot {
     //% block="Go forward at $speed \\%"
     //% speed.shadow="speedPicker"
     //% block
+    //% speed.min=0 speed.max= 100 x.defl=50
     export function forward(speed: number) {
-
-        pins.analogWritePin(AnalogPin.P1, 611)
+        speed *= 10;
+        
+        pins.analogWritePin(AnalogPin.P1, speed)
         pins.digitalWritePin(DigitalPin.P13, 1)
         pins.digitalWritePin(DigitalPin.P12, 0)
-        pins.analogWritePin(AnalogPin.P2, 611)
+        pins.analogWritePin(AnalogPin.P2, speed)
         pins.digitalWritePin(DigitalPin.P15, 1)
         pins.digitalWritePin(DigitalPin.P16, 0)
     }
