@@ -91,6 +91,7 @@ namespace MOREbot {
     //Trig -> pin 2   pins.digitalWritePin(DigitalPin.P2, 0)
     //Echo -> pin 3	pins.digitalWritePin(DigitalPin.P3, 0)
 
+    //%block
     export function readDistance(): number {
         //Allocate space for 5 results
         let distance: Array<number>;
