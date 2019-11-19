@@ -80,7 +80,6 @@ namespace MOREbot {
     }
 
 
-
     //%block 
     export function stop() {
         pins.digitalWritePin(DigitalPin.P13, 0)
@@ -88,6 +87,47 @@ namespace MOREbot {
         pins.digitalWritePin(DigitalPin.P15, 0)
         pins.digitalWritePin(DigitalPin.P16, 0)
     }
+
+    //Trig -> pin 2   pins.digitalWritePin(DigitalPin.P2, 0)
+    //Echo -> pin 3	pins.digitalWritePin(DigitalPin.P3, 0)
+
+    export function readDistance(): number {
+        //Allocate space for 5 results
+        let distance: Array<number>;
+
+        //Create an int to recieve the response time
+        let duration = 0;
+
+        //Loops 0-5 (5 times) and saves the result in the allocated space above
+        for (let i = 0; i < 5; i++) {
+            //Ensure that nothing is being sent to the Ultrasonic at start
+            pins.digitalWritePin(DigitalPin.P2, 0);
+            control.waitMicros(2);
+            basic.pause(100);
+
+            //Send a HIGH(1) signal to the Ultrasonic for 10 microseconds
+            pins.digitalWritePin(DigitalPin.P2, 1);
+            control.waitMicros(10);
+
+            //Send a LOW(0) signal to the Ultrasonic after those 10 microseconds
+            pins.digitalWritePin(DigitalPin.P2, 0)
+
+            //Record the time it takes from sending LOW(0) to recieve a HIGH(1) from the Ultrasonic
+            duration = pins.pulseIn(DigitalPin.P3, PulseValue.High)
+
+            //Convert time (microseconds) to distance (centimeters) using the speed of sound
+            distance[i] = duration * 0.0343 / 2;
+
+            //Wait some time to ensure all data is finished being processed
+            control.waitMicros(5)
+        }
+
+        //Take the average of the 5 measurements and return that result
+        return (distance[0] + distance[1] + distance[2] + distance[3] + distance[4]) / 5.0;
+    }
+
+
+
 
 
 }
